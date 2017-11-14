@@ -1,4 +1,34 @@
+
 <?php
+if(isset($_POST['submit'])){
+  include_once 'db.inc.php';
+  
+  $email=$_POST['email'];
+  $passwd=$_POST['password'];
+  
+  if(!filter_var($email,FILTER_VALIDATE_EMAIL)){
+    header("Location: ../signup.php")
+    $sql = "INSERT INTO users (passwordus,emailus) VALUES( '$passwd','$email');";
+      mysqli_query($conect,$sql);
+      if(!$sql){
+        echo "Fiald";
+      }else{
+        echo "success";
+      }
+  }
+
+  else{
+    $quer="SELECT * FROM users WHERE emailus='$email' ";
+    $res=$quer;
+  }
+
+  
+}
+?>
+ 
+
+
+<!-- 
 if(isset($_POST['submit'])){
 	include_once 'db.inc.php';
   
@@ -13,8 +43,8 @@ if(isset($_POST['submit'])){
         echo "success";
       }
 
-}
-  		?>
+} -->
+  		
 <!-- 
   if(!preg_match("/[a-zA-Z]*",$email)||!preg_match("/[a-zA-Z]*",$email)){
   	header("Location: ../login.php?login=invalid");
